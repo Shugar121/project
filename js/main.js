@@ -26,8 +26,10 @@ window.onkeydown = (event) => {
     if (event.code.toLowerCase() === 'space') {
         event.preventDefault()
         setRandomColors()
+
     }
 }
+
 
 // SLIDER BLOCK
 

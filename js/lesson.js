@@ -17,7 +17,7 @@ phoneButton.onclick = () => {
 
 const tabContentBLock = document.querySelectorAll('.tab_content_block')
 const tabContentItems = document.querySelectorAll('.tab_content_item')
-const tabParent = document.querySelector('.tab_content_item')
+const tabParent = document.querySelector('.tab_content_items')
 
 const hideTabContent = () => {
     tabContentBLock.forEach((item) => {
