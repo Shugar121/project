@@ -50,6 +50,91 @@ tabParent.onclick = (event) => {
     }
 }
 
+// CONVERTER
+//
+// const usdInput = document.querySelector('#usd')
+// const somInput = document.querySelector('#som')
+// const converter = (element, targetElement) => {
+//     element.oninput = () => {
+//         const request = new XMLHttpRequest()
+//         request.open('GET', '../data/convertor.json')
+//         request.setRequestHeader('Content-type', 'application/json')
+//         request.send()
+//
+//         request.onload = () => {
+//             const data = JSON.parse(request.response)
+//             if (element.id === 'som')
+//                 targetElement.value = (element.value / data.usd).toFixed(2)
+//         }
+//         if (element.id === 'usd') {
+//             targetElement.value = (element.value * data.usd).toFixed(2)
+//         }
+//         element.value === '' && (targetElement.value = '')
+//     }
+// }
+// converter(somInput, usdInput)
+// converter(usdInput, somInput)
+
+
+
+
+
+
+
+
+
+
+
+const usdInput = document.querySelector('#usd');
+const somInput = document.querySelector('#som');
+const eurInput = document.querySelector('#eur');
+
+fetch('../data/convertor.json')
+    .then(response => response.json())
+    .then(data => {
+        const converter = (element, targetElement1, targetElement2) => {
+            element.oninput = () => {
+                if (element.value === '') {
+                    targetElement1.value = '';
+                    targetElement2.value = '';
+                    return;
+                }
+
+                const somValue = parseFloat(element.value);
+
+                if (!isNaN(somValue)) {
+                    targetElement1.value = (somValue / data.usd).toFixed(2); // В долларах
+                    targetElement2.value = ((somValue / data.usd) * data.eur_to_usd).toFixed(2); // В евро
+                }
+            };
+        };
+
+        converter(somInput, usdInput, eurInput);
+        converter(usdInput, somInput, eurInput);
+        converter(eurInput, usdInput, somInput);
+    })
+  
+
+
+
+
+//DRY - dont`t repeat yourself - не повторяй самого себя
+//KISS - keep it simple stupid - делай проще, идиот
+//SOLID
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
